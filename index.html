@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWZLY - AI News Writer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      // Handles FOUC. Sets 'dark' class if theme is dark in localStorage
+      // or if system preference is dark and no localStorage is set.
+      // Otherwise, defaults to light (no class).
+      (function() {
+        try {
+          var theme = localStorage.getItem('newzly-theme');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else if (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          // If any error, do nothing (default to light) to be safe.
+        }
+      })();
+    </script>
+    <style>
+      html {
+        font-size: 15px;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      @keyframes rotate-in {
+        from {
+          transform: rotate(-90deg) scale(0.5);
+          opacity: 0;
+        }
+        to {
+          transform: rotate(0deg) scale(1);
+          opacity: 1;
+        }
+      }
+      .animate-rotate-in {
+        animation: rotate-in 0.3s ease-out;
+      }
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      @keyframes scale-in {
+        from { transform: scale(0.95); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      .animate-scale-in { animation: scale-in 0.2s ease-out forwards; }
+    </style>
+    <script>
+      // This configures Tailwind CSS to use class-based dark mode.
+      // It MUST come before the main Tailwind script.
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.17.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
